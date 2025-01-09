@@ -199,15 +199,3 @@ cd JavaDemos/BasicCRUD
 #### Response
 
 - HTTP Status: 204 NO CONTENT
-
-## Database Configuration
-
-- The application uses an H2 in-memory database by default for development.
-- To access the H2 console, go to: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
-    - **JDBC URL**: `jdbc:h2:mem:testdb`
-    - **Username**: `sa`
-    - **Password**: (leave blank)
-
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
