@@ -131,7 +131,7 @@ public class TaskController {
     public ResponseEntity<Object> deleteTask(@PathVariable @Min(1) Long id) {
         try {
             taskService.deleteTask(id);
-            return ResponseEntity.ok().build();
+            return ResponseEntity.noContent().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
