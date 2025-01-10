@@ -36,7 +36,7 @@ application.
 2. Clone the repository and navigate to the project folder.
 
 ```bash
-git clone https://github.com/RossiJr/JavaDemos/tree/main
+git clone https://github.com/RossiJr/JavaDemos.git
 cd JavaDemos/BasicCRUD
 ```
 
