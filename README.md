@@ -59,4 +59,4 @@ This repository contains a collection of Java projects showcasing various featur
    mvn clean install
    mvn spring-boot:run
 
-> It is noteworthy that you can run all the demos just by using `docker-compose up --build`, instead of configuring them in your own machine.
+> It is noteworthy that you can run most of the demos just by using `docker-compose up --build`, instead of configuring them in your own machine.
