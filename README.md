@@ -17,6 +17,13 @@ This repository contains a collection of Java projects showcasing various featur
   - Role-based access control
   - RESTful API for user management
 
+### 2. [Basic CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/BasicCRUD)
+- **Description**: Demonstrates the basics of creating a basic CRUD using Spring Boot e PostgreSQL
+- **Features**:
+  - Basic CRUD operations for managing tasks.
+  - RESTful APIs for seamless integration.
+  - Integration with PostgreSQL database.
+
 ## Technologies Used
 
 - **Java**: The primary programming language for all projects.
@@ -44,3 +51,5 @@ This repository contains a collection of Java projects showcasing various featur
    ```bash
    mvn clean install
    mvn spring-boot:run
+
+> It is noteworthy that you can run all the demos just by using `docker-compose up --build`, instead of configuring them in your own machine.
