@@ -46,6 +46,7 @@ public class S3Config {
                 .build();
     }
 
+    // Please check the README.md file for more information about how to configure the credentials in this way.
     private StaticCredentialsProvider secretKeyCredentialsProvider() {
         return StaticCredentialsProvider.create(
                 AwsBasicCredentials.create(
@@ -55,12 +56,14 @@ public class S3Config {
         );
     }
 
+    // Please check the README.md file for more information about how to configure the credentials in this way.
     private ProfileCredentialsProvider profileCredentialsProvider() {
         return ProfileCredentialsProvider.builder()
                 .profileName(profileName)
                 .build();
     }
 
+    // Please check the README.md file for more information about how to configure the credentials in this way.
     private InstanceProfileCredentialsProvider instanceRoleCredentialsProvider() {
         return InstanceProfileCredentialsProvider.create();
     }
