@@ -24,6 +24,13 @@ This repository contains a collection of Java projects showcasing various featur
   - RESTful APIs for seamless integration.
   - Integration with PostgreSQL database.
 
+### 3. [Basic AWS S3 CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/AWSS3-CRUD)
+- **Description**: Demonstrates a basic CRUD creation using S3 buckets.
+- **Features**:
+  - Basic CRUD operations for managing files on AWS S3.
+  - Supports uploading, reading, updating, and deleting files.
+  - Downloads the file when requesting with verb GET.
+
 ## Technologies Used
 
 - **Java**: The primary programming language for all projects.
