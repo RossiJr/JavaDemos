@@ -31,6 +31,14 @@ This repository contains a collection of Java projects showcasing various featur
   - Supports uploading, reading, updating, and deleting files.
   - Downloads the file when requesting with verb GET.
 
+### 4. [Project Structure](https://github.com/RossiJr/JavaDemos/tree/main/ProjectStructure)
+- **Description**: Foundational template for Java applications, providing a structured starting point for development.
+- **Features**:
+  - Pre-configured project structure following best practices.
+  - Sample configurations for common tools and frameworks.
+  - Placeholder classes and interfaces to guide development.
+  - Role based authentication logic already implemented.
+
 ## Technologies Used
 
 - **Java**: The primary programming language for all projects.
