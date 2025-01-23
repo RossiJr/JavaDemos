@@ -16,6 +16,9 @@ public class RoleService {
 
 
     public Role getRoleByName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Role name is required");
+        }
         return roleRepository.findByName(name);
     }
 }

@@ -26,6 +26,10 @@ public class JwtUtil {
     }
 
     public DecodedJWT verifyToken(String token) {
+        if (token == null || token.trim().isEmpty()) {
+            throw new IllegalArgumentException("Token is required");
+        }
+
         JWTVerifier verifier = JWT.require(algorithm).build();
         return verifier.verify(token);
     }

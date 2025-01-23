@@ -1,10 +1,16 @@
 package org.rossijr.projecttemplate.exception;
 
-public class ApplicationGeneralException extends RuntimeException {
-    private final Integer httpCode;
+import org.springframework.http.HttpStatus;
 
-    public ApplicationGeneralException(String message, Integer httpCode) {
+public class ApplicationWebGeneralException extends RuntimeException {
+    private final HttpStatus status;
+
+    public ApplicationWebGeneralException(String message, HttpStatus status) {
         super(message);
-        this.httpCode = httpCode;
+        this.status = status;
+    }
+
+    public HttpStatus getStatus() {
+        return status;
     }
 }

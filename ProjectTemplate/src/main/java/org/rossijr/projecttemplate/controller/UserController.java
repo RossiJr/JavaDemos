@@ -1,6 +1,5 @@
 package org.rossijr.projecttemplate.controller;
 
-import jakarta.persistence.Entity;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.rossijr.projecttemplate.dto.CreateUserRequestDTO;
@@ -18,7 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/user")
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -32,7 +31,6 @@ public class UserController {
         CreateUserResponseDTO userResponseDTO = userService.createUser(userRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(userResponseDTO);
     }
-
 
 
     @PreAuthorize("T(java.util.UUID).fromString(#id) == principal.id")

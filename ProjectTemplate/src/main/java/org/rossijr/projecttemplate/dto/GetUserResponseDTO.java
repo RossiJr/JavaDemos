@@ -1,6 +1,6 @@
 package org.rossijr.projecttemplate.dto;
 
-import org.rossijr.projecttemplate.model.UserRole;
+import org.rossijr.projecttemplate.model.Role;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
@@ -11,9 +11,9 @@ public class GetUserResponseDTO {
     private final String email;
     private final ZonedDateTime createdAt;
     private final ZonedDateTime updatedAt;
-    private final Set<UserRole> roles;
+    private final Set<Role> roles;
 
-    public GetUserResponseDTO(UUID id, String email, ZonedDateTime createdAt, ZonedDateTime updatedAt, Set<UserRole> roles) {
+    public GetUserResponseDTO(UUID id, String email, ZonedDateTime createdAt, ZonedDateTime updatedAt, Set<Role> roles) {
         this.id = id;
         this.email = email;
         this.createdAt = createdAt;
@@ -37,7 +37,7 @@ public class GetUserResponseDTO {
         return updatedAt;
     }
 
-    public Set<UserRole> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 }

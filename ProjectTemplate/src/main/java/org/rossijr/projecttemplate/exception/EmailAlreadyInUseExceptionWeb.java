@@ -1,11 +1,13 @@
 package org.rossijr.projecttemplate.exception;
 
-public class EmailAlreadyInUseException extends ApplicationGeneralException {
-    public EmailAlreadyInUseException(String message) {
-        super(message, 400);
+import org.springframework.http.HttpStatus;
+
+public class EmailAlreadyInUseExceptionWeb extends ApplicationWebGeneralException {
+    public EmailAlreadyInUseExceptionWeb(String message) {
+        super(message, HttpStatus.CONFLICT);
     }
 
-    public EmailAlreadyInUseException(String message, Integer httpCode) {
-        super(message, httpCode);
+    public EmailAlreadyInUseExceptionWeb(String message, HttpStatus status) {
+        super(message, status);
     }
 }

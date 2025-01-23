@@ -36,7 +36,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException {
         final String authorizationHeader = request.getHeader("Authorization");
 
         String username = null;
@@ -75,11 +75,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");
         } catch (Exception e) {
             // Handle general errors
-            logger.error("Unexpected error during authentication", e.getMessage());
+            logger.error("Unexpected error during authentication: {}", e.getMessage());
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Authentication processing error, please contact the administrator");
         }
     }
-
 
 
 }
