@@ -45,12 +45,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
      * @param request  the incoming HTTP request
      * @param response the outgoing HTTP response
      * @param chain    the filter chain to pass the request and response to the next filter
-     * @throws ServletException if a servlet-specific error occurs
      * @throws IOException      if an I/O error occurs during filtering
      * @see JwtUtil#verifyToken(String)
      */
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException {
         final String authorizationHeader = request.getHeader("Authorization");
 
         String username = null;
@@ -89,7 +88,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");
         } catch (Exception e) {
             // Handle general errors
-            logger.error("Unexpected error during authentication", e);
+            logger.error("Unexpected error during authentication: {}", e.getMessage());
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Authentication processing error, please contact the administrator");
         }
     }

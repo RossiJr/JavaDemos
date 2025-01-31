@@ -3,10 +3,15 @@ package org.rossijr.authentication.auth;
 import org.rossijr.authentication.model.User;
 import org.rossijr.authentication.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Custom implementation of {@link UserDetailsService} to load user-specific data for authentication.
@@ -45,9 +50,10 @@ public class CustomUserDetailsService implements UserDetailsService {
      * Loads user details by username (email) for authentication purposes.
      *
      * <p>This method retrieves user details from the {@link UserRepository} based on the provided
-     * username. If the username is null or blank, it throws an {@link IllegalArgumentException}.
+     * username, which is an email field. If the username is null or blank, it throws an {@link IllegalArgumentException}.
      * If the user is not found in the database, it throws a {@link UsernameNotFoundException}.
-     * The resulting {@link UserDetails} object contains the user's email, password, and roles.</p>
+     * Otherwise, it converts the user entity into a {@link UserDetails} object containing the user's credentials
+     * and authorities for authentication and authorization.</p>
      *
      * @param username the email of the user to load
      * @return a {@link UserDetails} object containing the user's credentials and authorities
@@ -56,15 +62,20 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if (username == null || username.trim().isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be null or blank");
+        if (username == null || username.trim().isEmpty() || username.length() > 255) {
+            throw new IllegalArgumentException("Invalid username format");
         }
         User user = userRepository.findByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid credentials");
         }
 
-        return new User(user.getId(), user.getUsername(), user.getPassword(), user.getRoles());
+        List<GrantedAuthority> authorities = user.getRoles().stream()
+                .flatMap(role -> role.getRole().getPermissions().stream())
+                .map(rolePermission -> new SimpleGrantedAuthority(rolePermission.getPermission().getName()))
+                .collect(Collectors.toList());
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
 
 }

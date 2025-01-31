@@ -37,12 +37,10 @@ public class UserRole implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;

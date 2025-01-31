@@ -1,10 +1,8 @@
 package org.rossijr.authentication.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.security.core.GrantedAuthority;
 
-import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,43 +23,58 @@ import java.util.Set;
  *       <li><b>name:</b> Unique name of the role (e.g., ROLE_ADMIN, ROLE_USER).</li>
  *       <li><b>description:</b> Optional description of the role's purpose.</li>
  *       <li><b>createdAt:</b> Timestamp indicating when the role was created.</li>
+ *       <li><b>updatedAt:</b> Timestamp indicating when the role was last updated.</li>
+ *       <li><b>createdBy:</b> User who created the role.</li>
+ *       <li><b>permissions:</b> Many-to-many association with {@link Permission} through {@link RolePermission}.</li>
  *     </ul>
  *   </li>
  *   <li><b>Relationships:</b>
  *     <ul>
  *       <li><b>userRoles:</b> Many-to-many association with {@link User} through {@link UserRole}.</li>
+ *       <li><b>createdBy:</b> Many-to-one association with {@link User} indicating the user who created the role.</li>
+ *       <li><b>permissions:</b> One-to-many association with {@link RolePermission} indicating the permissions granted by this role.</li>
  *     </ul>
  *   </li>
  * </ul>
- * <h3>Spring Security Integration:</h3>
- * <ul>
- *   <li>Implements {@link GrantedAuthority} to define the authority granted by this role.</li>
- *   <li>Method {@code getAuthority()} returns the role name, which integrates with Spring Security's authorization system.</li>
- * </ul>
  *
  * @see UserRole
- * @see GrantedAuthority
- **/
+ * @see Permission
+ * @see RolePermission
+ */
 @Entity
 @Table(name = "tb_role")
-public class Role implements Serializable, GrantedAuthority {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Set<UserRole> userRoles = new HashSet<>();
 
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private ZonedDateTime createdAt;
+
+    @JsonIgnore
+    @Column(name = "udpated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private ZonedDateTime updatedAt;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = false)
+    private User createdBy;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Set<RolePermission> permissions = new HashSet<>();
 
     public Role(String name) {
         this.name = name;
@@ -70,10 +83,6 @@ public class Role implements Serializable, GrantedAuthority {
     public Role() {
     }
 
-    @Override
-    public String getAuthority() {
-        return name;
-    }
 
     public Long getId() {
         return id;
@@ -113,5 +122,29 @@ public class Role implements Serializable, GrantedAuthority {
 
     public void setCreatedAt(ZonedDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public ZonedDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(ZonedDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Set<RolePermission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<RolePermission> permissions) {
+        this.permissions = permissions;
     }
 }

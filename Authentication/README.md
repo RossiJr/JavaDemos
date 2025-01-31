@@ -1,6 +1,6 @@
 # Authentication Demo
 
-This project is a demo for implementing authentication in a Java + Spring Boot application.
+This project is a demo for implementing permission based authentication in a Java + Spring Boot application.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This project is a demo for implementing authentication in a Java + Spring Boot a
 
 - User authentication and authorization.
 - JWT (JSON Web Token) for secure token-based authentication.
-- Role-based access control.
+- Permission-based access control using permissions and roles to group permissions.
 - RESTful APIs for authentication and user management.
 - Users can only access their own data.
 
@@ -94,8 +94,8 @@ cd JavaDemos/Authentication
 
 ### Role-Based Access Control Demonstration
 
-- `GET /api/v1/health/user`: Public health check endpoint (accessible to `USER` and `ADMIN` roles).
-- `GET /api/v1/health/admin`: Admin health check endpoint (accessible to `ADMIN` role only).
+- `GET /api/v1/health/user`: Public health check endpoint (accessible to `VIEW_USER` permission).
+- `GET /api/v1/health/admin`: Admin health check endpoint (accessible to `HEALTH_CHECK` permission).
 
 ## Example Requests
 
@@ -115,7 +115,8 @@ cd JavaDemos/Authentication
 - HTTP Status: 200 OK
   ```json
   {
-    "token": "<jwt-token>"
+    "token": "<jwt-token>",
+    "userId": "<user-id>"
   }
   ```
 
@@ -156,9 +157,11 @@ cd JavaDemos/Authentication
     "createdAt": "2025-01-08T12:16:22.4063157-03:00",
     "updatedAt": "2025-01-08T12:16:22.4063157-03:00",
     "roles": [
-      {
-        "name": "USER"
-      }
+        {
+            "id": 2,
+            "name": "ROLE_USER",
+            "description": "Regular user role with limited permissions"
+        }
     ]
   }
   ```

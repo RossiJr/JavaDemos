@@ -1,5 +1,6 @@
 package org.rossijr.authentication.config;
 
+import org.rossijr.authentication.auth.CustomAuthenticationEntryPoint;
 import org.rossijr.authentication.auth.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,10 +30,12 @@ public class SecurityConfig {
     private String allowedOrigins;
 
     private final JwtRequestFilter jwtRequestFilter;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
 
     @Autowired
-    public SecurityConfig(JwtRequestFilter jwtRequestFilter) {
+    public SecurityConfig(JwtRequestFilter jwtRequestFilter, CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
         this.jwtRequestFilter = jwtRequestFilter;
+        this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
     }
 
     @Bean
@@ -58,6 +61,7 @@ public class SecurityConfig {
      *     </ul>
      *     <li>Session management - As the application is stateless, the session creation policy is set to STATELESS</li>
      *     <li>Adding the JWT Filter</li>
+     *     <li>Exception handling - Custom authentication entry point</li>
      * </ul>
      *
      * @param http - The configuration object
@@ -71,10 +75,11 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .authorizeHttpRequests(auth -> auth
                         // Matches the authentication endpoint and the validation endpoint
-                        .requestMatchers("/api/v1/authenticate", "/api/v1/authenticate/validate").permitAll()
+                        .requestMatchers("/api/v1/authentication/login", "/api/v1/authentication/validate").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyRequest().authenticated()          // Require authentication for all other requests
                 )
+                .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(customAuthenticationEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 

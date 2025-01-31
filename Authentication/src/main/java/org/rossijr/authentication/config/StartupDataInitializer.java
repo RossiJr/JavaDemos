@@ -1,10 +1,14 @@
 package org.rossijr.authentication.config;
 
+import org.rossijr.authentication.model.Permission;
 import org.rossijr.authentication.model.Role;
 import org.rossijr.authentication.model.User;
 import org.rossijr.authentication.model.UserRole;
 import org.rossijr.authentication.repository.RoleRepository;
 import org.rossijr.authentication.repository.UserRepository;
+import org.rossijr.authentication.service.PermissionService;
+import org.rossijr.authentication.service.RolePermissionService;
+import org.rossijr.authentication.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
+import java.util.Optional;
 
 /**
  * Initializes the application with some default data
@@ -34,45 +39,73 @@ public class StartupDataInitializer {
     }
 
     @Bean
-    public CommandLineRunner initializeData() {
+    public CommandLineRunner initializeData(PermissionService permissionService, RoleService roleService, RolePermissionService rolePermissionService) {
         return args -> {
-            // Create roles if they don't exist
-            if (!roleRepository.existsByName("ROLE_USER")) {
-                roleRepository.save(new Role("ROLE_USER"));
-            }
+            // Create permissions
+            Permission healthCheck = Optional.ofNullable(permissionService.findByName("HEALTH_CHECK"))
+                    .orElseGet(() -> permissionService.save(new Permission("HEALTH_CHECK", "Permission to check server")));
 
-            if (!roleRepository.existsByName("ROLE_ADMIN")) {
-                roleRepository.save(new Role("ROLE_ADMIN"));
-            }
+            Permission viewUser = Optional.ofNullable(permissionService.findByName("VIEW_USER"))
+                    .orElseGet(() -> permissionService.save(new Permission("VIEW_USER", "Permission to view users")));
 
+
+            User user = new User();
+            User admin = new User();
             // Create admin user if not exists
             if (!userRepository.existsByEmail("admin@example.com")) {
-                User admin = new User();
                 admin.setEmail("admin@example.com");
                 admin.setPassword(passwordEncoder.encode("admin123"));
                 admin.setCreatedAt(ZonedDateTime.now());
                 admin.setUpdatedAt(ZonedDateTime.now());
                 admin.setRoles(new HashSet<>());
-
-                UserRole userRole = new UserRole(admin, roleRepository.findByName("ROLE_ADMIN"));
-
-                admin.getRoles().add(userRole);
-
                 userRepository.save(admin);
             }
 
+
+
             // Create regular user if not exists
             if (!userRepository.existsByEmail("user@example.com")) {
-                User user = new User();
                 user.setEmail("user@example.com");
                 user.setPassword(passwordEncoder.encode("user123"));
+                user.setCreatedAt(ZonedDateTime.now());
+                user.setUpdatedAt(ZonedDateTime.now());
                 user.setRoles(new HashSet<>());
 
-                UserRole userRole = new UserRole(user, roleRepository.findByName("ROLE_USER"));
-
-                user.getRoles().add(userRole);
                 userRepository.save(user);
             }
+
+            // Create roles and assign permissions
+            Role adminRole = Optional.ofNullable(roleService.getRoleByName("ROLE_ADMIN")).orElseGet(() -> {
+                Role role = new Role();
+                role.setName("ROLE_ADMIN");
+                role.setDescription("Administrator role with full permissions");
+                role.setCreatedBy(admin);
+                return roleService.save(role);
+            });
+
+            Role userRole = Optional.ofNullable(roleService.getRoleByName("ROLE_USER")).orElseGet(() -> {
+                Role role = new Role();
+                role.setName("ROLE_USER");
+                role.setDescription("Regular user role with limited permissions");
+                role.setCreatedBy(admin);
+                return roleService.save(role);
+            });
+
+            // Assign permissions to roles
+            roleService.assignPermissionToRole(adminRole.getId(), healthCheck.getId(), admin.getId());
+            roleService.assignPermissionToRole(adminRole.getId(), viewUser.getId(), admin.getId());
+
+
+            roleService.assignPermissionToRole(userRole.getId(), viewUser.getId(), admin.getId());
+
+            UserRole userRoleAdmin = new UserRole(admin, roleRepository.findByName("ROLE_ADMIN"));
+            UserRole userRoleUser = new UserRole(user, roleRepository.findByName("ROLE_USER"));
+
+            user.getRoles().add(userRoleUser);
+            admin.getRoles().add(userRoleAdmin);
+            userRepository.save(admin);
+            userRepository.save(user);
+
         };
     }
 }

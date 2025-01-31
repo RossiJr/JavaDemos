@@ -28,7 +28,7 @@ public class UserController {
      * Creates a new user in the system.
      *
      * <p>This method is secured using the {@code @PreAuthorize} annotation to restrict access to users
-     * with the {@code ADMIN} role. Only authenticated users with administrative privileges can perform
+     * with the {@code CREATE_USER} permission. Only authenticated users with this permission can perform
      * this operation.</p>
      *
      * @param userRequestDTO a {@link CreateUserRequestDTO} object containing the details of the user
@@ -36,7 +36,7 @@ public class UserController {
      * @return a {@link ResponseEntity} containing the details of the newly created user wrapped in a
      * {@link CreateUserResponseDTO} object, along with an HTTP status of {@code 201 CREATED}.
      */
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('CREATE_USER')")
     @PostMapping
     public ResponseEntity<CreateUserResponseDTO> createUser(@Valid @RequestBody CreateUserRequestDTO userRequestDTO) {
         CreateUserResponseDTO userResponseDTO = userService.createUser(userRequestDTO);
@@ -48,20 +48,24 @@ public class UserController {
      *
      * <p>This method is secured using the {@code @PreAuthorize} annotation to ensure that only the
      * authenticated user can access their own data. The method checks whether the provided user ID
-     * matches the ID of the authenticated user.</p>
+     * matches the ID of the authenticated user - it is possible to create your own annotation to
+     * check this constraint (the user accessing only its own data) you can read more about it in the
+     * Spring Security documentation.</p>
      *
      * <p>The method uses a UUID-based ID for user identification. If the provided ID does not match
      * the authenticated user's ID, the request will result in a {@code 403 Forbidden} response.</p>
      *
      * @param id the UUID of the user whose data is being requested, provided as a path variable.
      *           This value must be non-blank and valid.
+     * @param token the authentication token of the user making the request, provided as a header (it extracts
+     *              automatically from the request header).
      * @return a {@link ResponseEntity} containing the user's data wrapped in a
      * {@link GetUserResponseDTO} object.
      * @throws IllegalArgumentException if the provided {@code id} is not a valid UUID.
      */
-    @PreAuthorize("T(java.util.UUID).fromString(#id) == principal.id")
+    @PreAuthorize("T(java.util.UUID).fromString(#id).equals(@securityUtils.getAuthenticatedUserId(#token))")
     @GetMapping("/{id}")
-    public ResponseEntity<GetUserResponseDTO> getUser(@Valid @NotBlank @PathVariable String id) {
+    public ResponseEntity<GetUserResponseDTO> getUser(@RequestHeader("Authorization") String token, @Valid @NotBlank @PathVariable String id) {
         return ResponseEntity.ok(userService.getUser(UUID.fromString(id)));
     }
 }

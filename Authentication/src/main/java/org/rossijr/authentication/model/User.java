@@ -36,29 +36,32 @@ public class User implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Column(name = "ID", updatable = false, nullable = false, unique = true)
+    @Column(name = "id", updatable = false, nullable = false, unique = true)
     private UUID id;
 
-    @Column(name = "EMAIL", nullable = false, columnDefinition = "TEXT", unique = true)
+    @Column(name = "email", nullable = false, columnDefinition = "TEXT", unique = true)
     private String email;
 
-    @Column(name = "PASSWORD", nullable = false, columnDefinition = "TEXT")
+    @Column(name = "password", nullable = false, columnDefinition = "TEXT")
     private String password;
 
-    @Column(name = "CREATED_AT", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private ZonedDateTime createdAt;
 
-    @Column(name = "UPDATED_AT", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    @Column(name = "updated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private ZonedDateTime updatedAt;
 
-    @Column(name = "LAST_LOGIN", columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    @Column(name = "last_login", columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private ZonedDateTime lastLogin;
-
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<UserRole> roles;
 
     public User() {
+    }
+
+    public User(UUID id) {
+        this.id = id;
     }
 
     public User(UUID id, String email, String password, Set<UserRole> roles) {
@@ -71,7 +74,12 @@ public class User implements Serializable, UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRole().getName()))
+                .map(UserRole::getRole)
+                .map(Role::getPermissions)
+                .flatMap(Collection::stream)
+                .map(RolePermission::getPermission)
+                .map(Permission::getName)
+                .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
     }
 
