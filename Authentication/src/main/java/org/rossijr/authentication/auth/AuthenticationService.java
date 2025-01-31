@@ -35,6 +35,7 @@ public class AuthenticationService {
 
     /**
      * Updates the last login date for the user with the provided email.
+     *
      * @param email the email of the user
      */
     private void updateLastLogin(String email) {
@@ -54,6 +55,7 @@ public class AuthenticationService {
      * successfully authenticated, the method creates a JWT token by invoking the {@link JwtUtil#createToken} method, updates
      * the last login date for the user, and returns the token and user ID wrapped inside the {@link AuthenticationResponseDTO}
      * class. If the authentication fails, the method throws an exception.</p>
+     *
      * @param authenticationRequestDTO the authentication request containing the user email and password
      * @return an {@link AuthenticationResponseDTO} containing the JWT token and user ID
      */
@@ -85,6 +87,7 @@ public class AuthenticationService {
      *
      * <p>The method validates the provided JWT token by invoking the {@link JwtUtil#verifyToken} method. If the token is valid,
      * the method returns a success message. If the token is invalid, the method throws an exception.</p>
+     *
      * @param jwtToken the JWT token to be validated
      * @return a success message if the token is valid
      */

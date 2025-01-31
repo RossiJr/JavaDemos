@@ -43,9 +43,10 @@ public class RoleService {
 
     /**
      * Assign permission to role
-     * @param roleId role that is going to receive the permission
+     *
+     * @param roleId       role that is going to receive the permission
      * @param permissionId permission that is going to be assigned to the role
-     * @param userId user that is assigning the permission
+     * @param userId       user that is assigning the permission
      */
     public void assignPermissionToRole(Long roleId, Long permissionId, UUID userId) {
         Role role = roleRepository.findById(roleId)
@@ -64,6 +65,7 @@ public class RoleService {
 
     /**
      * Save role
+     *
      * @param role role to be saved
      * @return saved role
      */

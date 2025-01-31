@@ -27,8 +27,9 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
      * This method is called whenever an exception is thrown due to an unauthenticated user trying to access a resource that requires authentication.
      *
      * <p>Important, this is not part of GlobalExceptionHandler, this is a specific handler for authentication exceptions.</p>
-     * @param request *Not important to describe for this context*
-     * @param response *Not important to describe for this context*
+     *
+     * @param request       *Not important to describe for this context*
+     * @param response      *Not important to describe for this context*
      * @param authException *Not important to describe for this context*
      * @throws IOException *Not important to describe for this context*
      */

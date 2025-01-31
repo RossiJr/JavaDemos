@@ -45,7 +45,8 @@ cd JavaDemos/Authentication
 
 1. Configure PostgreSQL:
     - Create a database `Authentication`.
-    - Use environment variables to set database credentials instead of hardcoding them in the `application.properties` file.
+    - Use environment variables to set database credentials instead of hardcoding them in the `application.properties`
+      file.
 
    ```properties
    spring.datasource.url=jdbc:postgresql://localhost:5432/Authentication
@@ -72,7 +73,8 @@ cd JavaDemos/Authentication
    docker-compose up --build
    ```
 
-3. The application should now be running, with the backend accessible at `http://localhost:8080` and the database running in a Docker container.
+3. The application should now be running, with the backend accessible at `http://localhost:8080` and the database
+   running in a Docker container.
 
 4. To stop the containers:
 
@@ -102,6 +104,7 @@ cd JavaDemos/Authentication
 ### Authenticate
 
 #### Request
+
 - **Endpoint**: `POST /api/v1/authenticate`
 - **Body**:
   ```json
@@ -112,6 +115,7 @@ cd JavaDemos/Authentication
   ```
 
 #### Response
+
 - HTTP Status: 200 OK
   ```json
   {
@@ -123,6 +127,7 @@ cd JavaDemos/Authentication
 ### Validate Token
 
 #### Request
+
 - **Endpoint**: `POST /api/v1/authenticate/validate`
 - **Body**:
   ```json
@@ -132,6 +137,7 @@ cd JavaDemos/Authentication
   ```
 
 #### Response
+
 - HTTP Status: 200 OK
   ```json
   {
@@ -142,6 +148,7 @@ cd JavaDemos/Authentication
 ### Retrieve User Details
 
 #### Request
+
 - **Endpoint**: `GET /api/v1/user`
 - **Headers**:
   ```
@@ -149,6 +156,7 @@ cd JavaDemos/Authentication
   ```
 
 #### Response
+
 - HTTP Status: 200 OK
   ```json
   {
@@ -169,6 +177,7 @@ cd JavaDemos/Authentication
 ### Create User
 
 #### Request
+
 - **Endpoint**: `POST /api/v1/user`
 - **Headers**:
   ```
@@ -183,6 +192,7 @@ cd JavaDemos/Authentication
   ```
 
 #### Response
+
 - HTTP Status: 201 CREATED
   ```json
   {
@@ -195,6 +205,7 @@ cd JavaDemos/Authentication
 ### Health Check for Users
 
 #### Request
+
 - **Endpoint**: `GET /api/v1/health/user`
 - **Headers**:
   ```
@@ -202,6 +213,7 @@ cd JavaDemos/Authentication
   ```
 
 #### Response
+
 - HTTP Status: 200 OK
   ```json
   {
@@ -212,6 +224,7 @@ cd JavaDemos/Authentication
 ### Health Check for Admins
 
 #### Request
+
 - **Endpoint**: `GET /api/v1/health/admin`
 - **Headers**:
   ```
@@ -219,6 +232,7 @@ cd JavaDemos/Authentication
   ```
 
 #### Response
+
 - HTTP Status: 200 OK
   ```json
   {

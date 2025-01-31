@@ -24,7 +24,6 @@ public class SecurityUtils {
     }
 
     /**
-     *
      * @param token
      * @return
      */

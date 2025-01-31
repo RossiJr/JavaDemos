@@ -55,8 +55,8 @@ public class UserController {
      * <p>The method uses a UUID-based ID for user identification. If the provided ID does not match
      * the authenticated user's ID, the request will result in a {@code 403 Forbidden} response.</p>
      *
-     * @param id the UUID of the user whose data is being requested, provided as a path variable.
-     *           This value must be non-blank and valid.
+     * @param id    the UUID of the user whose data is being requested, provided as a path variable.
+     *              This value must be non-blank and valid.
      * @param token the authentication token of the user making the request, provided as a header (it extracts
      *              automatically from the request header).
      * @return a {@link ResponseEntity} containing the user's data wrapped in a

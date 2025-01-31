@@ -3,7 +3,6 @@ package org.rossijr.authentication.auth;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -45,7 +44,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
      * @param request  the incoming HTTP request
      * @param response the outgoing HTTP response
      * @param chain    the filter chain to pass the request and response to the next filter
-     * @throws IOException      if an I/O error occurs during filtering
+     * @throws IOException if an I/O error occurs during filtering
      * @see JwtUtil#verifyToken(String)
      */
     @Override

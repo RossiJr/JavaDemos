@@ -43,7 +43,7 @@ public class UserService {
      *
      * @param userRequestDTO the data transfer object containing user details
      * @return a data transfer object containing the created user's details
-     * @throws IllegalArgumentException   if the provided user details are invalid
+     * @throws IllegalArgumentException      if the provided user details are invalid
      * @throws EmailAlreadyInUseExceptionWeb if the email is already associated with an existing user
      */
     public CreateUserResponseDTO createUser(CreateUserRequestDTO userRequestDTO) {

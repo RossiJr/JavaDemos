@@ -62,7 +62,6 @@ public class StartupDataInitializer {
             }
 
 
-
             // Create regular user if not exists
             if (!userRepository.existsByEmail("user@example.com")) {
                 user.setEmail("user@example.com");

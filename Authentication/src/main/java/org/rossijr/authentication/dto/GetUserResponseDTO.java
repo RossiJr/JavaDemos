@@ -1,7 +1,6 @@
 package org.rossijr.authentication.dto;
 
 import org.rossijr.authentication.model.Role;
-import org.rossijr.authentication.model.UserRole;
 
 import java.time.ZonedDateTime;
 import java.util.Set;
