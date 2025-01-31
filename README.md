@@ -14,7 +14,7 @@ This repository contains a collection of Java projects showcasing various featur
 - **Description**: Demonstrates a secure authentication system using Java and Spring Boot.
 - **Features**:
   - JWT-based authentication
-  - Role-based access control
+  - Permission-based access control with roles to group permissions
   - RESTful API for user management
 
 ### 2. [Basic CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/BasicCRUD)
