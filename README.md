@@ -67,4 +67,6 @@ This repository contains a collection of Java projects showcasing various featur
    mvn clean install
    mvn spring-boot:run
 
+> It is nice to say that some line-comments are automatically generated to improve writing speed. However, **all** of them are read and further improved by the author. 
+
 > It is noteworthy that you can run most of the demos just by using `docker-compose up --build`, instead of configuring them in your own machine.
