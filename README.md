@@ -5,6 +5,11 @@ This repository contains a collection of Java projects showcasing various featur
 ## Table of Contents
 
 - [Projects](#projects)
+  - [Authentication Demo](#1-authentication-demo)
+  - [Basic CRUD Demo](#2-basic-crud-demo)
+  - [Basic AWS S3 CRUD Demo](#3-basic-aws-s3-crud-demo)
+  - [Project Structure](#4-project-structure)
+  - [Elasticsearch CRUD Demo](#5-elasticsearch-crud-demo)
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
 
@@ -39,6 +44,16 @@ This repository contains a collection of Java projects showcasing various featur
   - Placeholder classes and interfaces to guide development.
   - Role based authentication logic already implemented.
 
+### 5. [Elasticsearch CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/ElasticSearch-CRUD)
+- **Description**: Demonstrates a CRUD application using **Elasticsearch** with **Spring Boot**.
+- **Features**:
+  - Basic CRUD operations for managing users in Elasticsearch.
+  - Dynamic aggregation queries with support for:
+    - Counting users by fields (e.g., `city`, or `age`).
+    - Retrieving top cities by age range using dynamic range queries.
+    - Full-text search with typo tolerance (fuzziness).
+  - Elasticsearch integration using **Spring Data Elasticsearch**.
+
 ## Technologies Used
 
 - **Java**: The primary programming language for all projects.
@@ -67,6 +82,6 @@ This repository contains a collection of Java projects showcasing various featur
    mvn clean install
    mvn spring-boot:run
 
-> It is nice to say that some line-comments are automatically generated to improve writing speed. However, **all** of them are read and further improved by the author. 
+> It is nice to say that some inline-comments are automatically generated to improve writing speed. However, **all** of them are read and further improved by the author. 
 
 > It is noteworthy that you can run most of the demos just by using `docker-compose up --build`, instead of configuring them in your own machine.
