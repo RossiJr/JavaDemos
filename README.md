@@ -5,11 +5,11 @@ This repository contains a collection of Java projects showcasing various featur
 ## Table of Contents
 
 - [Projects](#projects)
-  - [Authentication Demo](#1-authentication-demo)
-  - [Basic CRUD Demo](#2-basic-crud-demo)
-  - [Basic AWS S3 CRUD Demo](#3-basic-aws-s3-crud-demo)
-  - [Project Structure](#4-project-structure)
-  - [Elasticsearch CRUD Demo](#5-elasticsearch-crud-demo)
+  - [Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/Authentication)
+  - [Basic CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/BasicCRUD)
+  - [Basic AWS S3 CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/AWSS3-CRUD)
+  - [Project Structure](https://github.com/RossiJr/JavaDemos/tree/main/ProjectStructure)
+  - [Elasticsearch CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/ElasticSearch-CRUD)
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
 
