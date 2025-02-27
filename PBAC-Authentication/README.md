@@ -1,6 +1,6 @@
 # Authentication Demo
 
-This project is a demo for implementing permission based authentication in a Java + Spring Boot application.
+This project is a demo for implementing Permission-Based Access Control (PBAC) authentication system in a Java + Spring Boot application.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This project is a demo for implementing permission based authentication in a Jav
 
 - User authentication and authorization.
 - JWT (JSON Web Token) for secure token-based authentication.
-- Permission-based access control using permissions and roles to group permissions.
+- Permission-based access control using permissions and roles to *group permissions*.
 - RESTful APIs for authentication and user management.
 - Users can only access their own data.
 
