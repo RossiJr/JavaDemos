@@ -5,14 +5,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.1</version>
+        <version>3.4.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.rossijr</groupId>
-    <artifactId>pbac-authentication</artifactId>
+    <artifactId>RBAC-Authentication</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>PBAC-Authentication</name>
-    <description>PBAC-Authentication</description>
+    <name>RBAC-Authentication</name>
+    <description>RBAC-Authentication</description>
     <url/>
     <licenses>
         <license/>
