@@ -42,7 +42,7 @@ This project demonstrates a CRUD (Create, Read, Update, Delete) application usin
 
 ```bash
 git clone https://github.com/RossiJr/JavaDemos.git
-cd JavaDemos/Elasticsearch-CRUD
+cd JavaDemos/6_Elasticsearch-CRUD
 ```
 
 ### Local Setup (not Recommended)
@@ -63,7 +63,7 @@ cd JavaDemos/Elasticsearch-CRUD
 3. Build and run the Spring Boot application:
 
     ```bash
-    mvn clean install
+    mvn clean install -DskipTests
     mvn spring-boot:run
     ```
 
@@ -236,6 +236,8 @@ cd JavaDemos/Elasticsearch-CRUD
   ```
   
 ## Notes
+
+ - Use the correct Build-Lifecycle from Maven (in this project we are skipping many phases and generating the JAR without testing, as it is a demo designed to local development only).
  - The project uses Spring Data Elasticsearch for integrating with Elasticsearch.
  - Ensure your Elasticsearch instance is running before starting the application.
  - Use Postman or similar tools to test the APIs.

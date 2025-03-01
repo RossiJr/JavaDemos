@@ -38,7 +38,7 @@ This project is a demo for implementing Permission-Based Access Control (PBAC) a
 
 ```bash
 git clone https://github.com/RossiJr/JavaDemos/tree/main
-cd JavaDemos/PBAC-Authentication
+cd JavaDemos/1_PBAC-Authentication
 ```
 
 ### Backend Setup
@@ -59,7 +59,7 @@ cd JavaDemos/PBAC-Authentication
 2. Build and run the Spring Boot backend:
 
    ```bash
-   mvn clean install
+   mvn clean install -DskipTests
    mvn spring-boot:run
    ```
 
@@ -242,6 +242,7 @@ cd JavaDemos/PBAC-Authentication
 
 ## Security Considerations
 
+- Use the correct Build-Lifecycle from Maven (in this project we are skipping many phases and generating the JAR without testing, as it is a demo designed to local development only).
 - Use HTTPS in production to secure API communications.
 - Store JWT securely on the client side (e.g., in HTTP-only cookies or local storage).
 - Implement rate limiting and account lockout policies to prevent brute force attacks.

@@ -37,7 +37,7 @@ This project is a demo for implementing a simple ChatService application with Ka
 
 ```bash
 git clone https://github.com/RossiJr/JavaDemos/tree/main
-cd JavaDemos/Kakfa-ChatService
+cd JavaDemos/7_Kakfa-ChatService
 ```
 
 ### Backend Setup
@@ -45,7 +45,7 @@ cd JavaDemos/Kakfa-ChatService
 1. Build and run the Spring Boot backend:
 
    ```bash
-   mvn clean package -DskipTests
+   mvn clean install -DskipTests
    mvn spring-boot:run
    ```
 
@@ -115,6 +115,7 @@ cd JavaDemos/Kakfa-ChatService
 
 ## Security Considerations
 
+- Use the correct Build-Lifecycle from Maven (in this project we are skipping many phases and generating the JAR without testing, as it is a demo designed to local development only).
 - As it is not the focus of this demo, the following security considerations are not implemented:
   - Authentication and authorization mechanisms.
   - Input validation and sanitization.
