@@ -37,7 +37,7 @@ application.
 
 ```bash
 git clone https://github.com/RossiJr/JavaDemos.git
-cd JavaDemos/BasicCRUD
+cd JavaDemos/3_BasicCRUD
 ```
 
 ### Backend Setup
@@ -45,7 +45,7 @@ cd JavaDemos/BasicCRUD
 1. Build and run the Spring Boot backend:
 
    ```bash
-   mvn clean install
+   mvn clean install -DskipTests
    mvn spring-boot:run
    ```
 
@@ -199,3 +199,5 @@ cd JavaDemos/BasicCRUD
 #### Response
 
 - HTTP Status: 204 NO CONTENT
+
+> Use the correct Build-Lifecycle from Maven (in this project we are skipping many phases and generating the JAR without testing, as it is a demo designed to local development only).

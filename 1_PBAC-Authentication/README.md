@@ -1,6 +1,6 @@
-# RBAC-Authentication Demo
+# PBAC-Authentication Demo
 
-This project is a demo for implementing Role-Based Access Control (RBAC) authentication system in a Java + Spring Boot application.
+This project is a demo for implementing Permission-Based Access Control (PBAC) authentication system in a Java + Spring Boot application.
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This project is a demo for implementing Role-Based Access Control (RBAC) authent
 
 - User authentication and authorization.
 - JWT (JSON Web Token) for secure token-based authentication.
-- Role-based access control using roles to access endpoints.
+- Permission-based access control using permissions and roles to *group permissions*.
 - RESTful APIs for authentication and user management.
 - Users can only access their own data.
 
@@ -38,7 +38,7 @@ This project is a demo for implementing Role-Based Access Control (RBAC) authent
 
 ```bash
 git clone https://github.com/RossiJr/JavaDemos/tree/main
-cd JavaDemos/RBAC-Authentication
+cd JavaDemos/1_PBAC-Authentication
 ```
 
 ### Backend Setup
@@ -59,7 +59,7 @@ cd JavaDemos/RBAC-Authentication
 2. Build and run the Spring Boot backend:
 
    ```bash
-   mvn clean install
+   mvn clean install -DskipTests
    mvn spring-boot:run
    ```
 
@@ -96,8 +96,8 @@ cd JavaDemos/RBAC-Authentication
 
 ### Role-Based Access Control Demonstration
 
-- `GET /api/v1/health/user`: Public health check endpoint (accessible to `ROLE_USER` and `ROLE_ADMIN` roles).
-- `GET /api/v1/health/admin`: Admin health check endpoint (accessible to `ROLE_ADMIN` role).
+- `GET /api/v1/health/user`: Public health check endpoint (accessible to `VIEW_USER` permission).
+- `GET /api/v1/health/admin`: Admin health check endpoint (accessible to `HEALTH_CHECK` permission).
 
 ## Example Requests
 
@@ -242,6 +242,7 @@ cd JavaDemos/RBAC-Authentication
 
 ## Security Considerations
 
+- Use the correct Build-Lifecycle from Maven (in this project we are skipping many phases and generating the JAR without testing, as it is a demo designed to local development only).
 - Use HTTPS in production to secure API communications.
 - Store JWT securely on the client side (e.g., in HTTP-only cookies or local storage).
 - Implement rate limiting and account lockout policies to prevent brute force attacks.

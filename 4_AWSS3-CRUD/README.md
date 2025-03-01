@@ -35,7 +35,7 @@ This project is a demo for implementing a basic CRUD application using AWS S3 wi
 
 ```bash
 git clone https://github.com/RossiJr/JavaDemos.git
-cd JavaDemos\AWSS3CRUD
+cd JavaDemos\4_AWSS3CRUD
 ```
 
 ### Backend Setup
@@ -43,7 +43,7 @@ cd JavaDemos\AWSS3CRUD
 1. Build and run the Spring Boot backend:
 
    ```bash
-   mvn clean install
+   mvn clean install -DskipTests
    mvn spring-boot:run
    ```
     > **Note**: Ensure your AWS credentials are configured in the environment variables. Also be sure you have the bucket already created and configured.
@@ -212,3 +212,7 @@ private InstanceProfileCredentialsProvider instanceRoleCredentialsProvider() {
     "message": "File deleted successfully with key: sample.pdf"
   }
   ```
+
+
+
+> Use the correct Build-Lifecycle from Maven (in this project we are skipping many phases and generating the JAR without testing, as it is a demo designed to local development only).

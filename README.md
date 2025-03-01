@@ -5,47 +5,47 @@ This repository contains a collection of Java projects showcasing various featur
 ## Table of Contents
 
 - [Projects](#projects)
-  1. [PBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/PBAC-Authentication)
-  2. [RBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/RBAC-Authentication)
-  3. [Basic CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/BasicCRUD)
-  4. [Basic AWS S3 CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/AWSS3-CRUD)
-  5. [Project Structure](https://github.com/RossiJr/JavaDemos/tree/main/ProjectStructure)
-  6. [Elasticsearch CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/ElasticSearch-CRUD)
-  7. [Kafka ChatService Demo](https://github.com/RossiJr/JavaDemos/tree/main/Kafka-ChatService)
+  1. [PBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/1_PBAC-Authentication)
+  2. [RBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/2_RBAC-Authentication)
+  3. [Basic CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/3_BasicCRUD)
+  4. [Basic AWS S3 CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/4_AWSS3-CRUD)
+  5. [Project Template](https://github.com/RossiJr/JavaDemos/tree/main/5_ProjectTemplate)
+  6. [Elasticsearch CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/6_ElasticSearch-CRUD)
+  7. [Kafka ChatService Demo](https://github.com/RossiJr/JavaDemos/tree/main/7_Kafka-ChatService)
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
 
 ## Projects
 
-### 1. [PBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/PBAC-Authentication)
+### 1. [PBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/1_PBAC-Authentication)
 - **Description**: Demonstrates a secure Permission-Based Access Control (PBAC) authentication system using Java and Spring Boot.
 - **Features**:
   - JWT-based authentication
   - Permission-based access control with roles to *group permissions*.
   - RESTful API for user management
 
-### 2. [RBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/RBAC-Authentication)
+### 2. [RBAC-Authentication Demo](https://github.com/RossiJr/JavaDemos/tree/main/2_RBAC-Authentication)
 - **Description**: Demonstrates a secure Role-Based Access Control (RBAC) authentication system using Java and Spring Boot.
 - **Features**:
   - JWT-based authentication
   - Role-based access control using roles to access endpoints.
   - RESTful API for user management
 
-### 3. [Basic CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/BasicCRUD)
+### 3. [Basic CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/3_BasicCRUD)
 - **Description**: Demonstrates the basics of creating a basic CRUD using Spring Boot e PostgreSQL
 - **Features**:
   - Basic CRUD operations for managing tasks.
   - RESTful APIs for seamless integration.
   - Integration with PostgreSQL database.
 
-### 4. [Basic AWS S3 CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/AWSS3-CRUD)
+### 4. [Basic AWS S3 CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/4_AWSS3-CRUD)
 - **Description**: Demonstrates a basic CRUD creation using S3 buckets.
 - **Features**:
   - Basic CRUD operations for managing files on AWS S3.
   - Supports uploading, reading, updating, and deleting files.
   - Downloads the file when requesting with verb GET.
 
-### 5. [Project Structure](https://github.com/RossiJr/JavaDemos/tree/main/ProjectStructure)
+### 5. [Project Template](https://github.com/RossiJr/JavaDemos/tree/main/5_ProjectTemplate)
 - **Description**: Foundational template for Java applications, providing a structured starting point for development.
 - **Features**:
   - Pre-configured project structure following best practices.
@@ -53,7 +53,7 @@ This repository contains a collection of Java projects showcasing various featur
   - Placeholder classes and interfaces to guide development.
   - Role based authentication logic already implemented.
 
-### 6. [Elasticsearch CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/ElasticSearch-CRUD)
+### 6. [Elasticsearch CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/6_ElasticSearch-CRUD)
 - **Description**: Demonstrates a CRUD application using **Elasticsearch** with **Spring Boot**.
 - **Features**:
   - Basic CRUD operations for managing users in Elasticsearch.
@@ -63,7 +63,7 @@ This repository contains a collection of Java projects showcasing various featur
     - Full-text search with typo tolerance (fuzziness).
   - Elasticsearch integration using **Spring Data Elasticsearch**.
 
-### 7. [Kafka ChatService Demo](https://github.com/RossiJr/JavaDemos/tree/main/Kafka-ChatService)
+### 7. [Kafka ChatService Demo](https://github.com/RossiJr/JavaDemos/tree/main/7_Kafka-ChatService)
 - **Description**: This project is a demo for implementing a simple ChatService application with **Kafka** + **SpringBoot** + **MongoDB**. The main goal is to demonstrate the usage of **Kafka** and **WebSockets**.
 - **Features**:
   - Send and receive messages in real-time using WebSockets.
@@ -98,7 +98,7 @@ This repository contains a collection of Java projects showcasing various featur
 4. Build and run the project using Maven:
 
    ```bash
-   mvn clean install
+   mvn clean package -DskipTests
    mvn spring-boot:run
 
 > It is nice to say that some inline-comments are automatically generated to improve writing speed. However, **all** of them are read and further improved by the author. 
