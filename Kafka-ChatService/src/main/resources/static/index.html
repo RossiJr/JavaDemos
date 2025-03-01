@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Kafka Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/js/chat.js" defer></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Kafka WebSockets Chat</h1>
+
+<div id="chat-container">
+    <input type="text" id="usernameInput" placeholder="Enter your name">
+    <input type="text" id="messageInput" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<ul id="messages"></ul>
+</body>
+</html>

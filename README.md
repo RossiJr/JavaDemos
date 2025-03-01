@@ -11,6 +11,7 @@ This repository contains a collection of Java projects showcasing various featur
   4. [Basic AWS S3 CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/AWSS3-CRUD)
   5. [Project Structure](https://github.com/RossiJr/JavaDemos/tree/main/ProjectStructure)
   6. [Elasticsearch CRUD Demo](https://github.com/RossiJr/JavaDemos/tree/main/ElasticSearch-CRUD)
+  7. [Kafka ChatService Demo](https://github.com/RossiJr/JavaDemos/tree/main/Kafka-ChatService)
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
 
@@ -62,14 +63,24 @@ This repository contains a collection of Java projects showcasing various featur
     - Full-text search with typo tolerance (fuzziness).
   - Elasticsearch integration using **Spring Data Elasticsearch**.
 
+### 7. [Kafka ChatService Demo](https://github.com/RossiJr/JavaDemos/tree/main/Kafka-ChatService)
+- **Description**: This project is a demo for implementing a simple ChatService application with **Kafka** + **SpringBoot** + **MongoDB**. The main goal is to demonstrate the usage of **Kafka** and **WebSockets**.
+- **Features**:
+  - Send and receive messages in real-time using WebSockets.
+  - Save chat history in MongoDB.
+  - Use Kafka to broadcast messages to all subscribers.
+
 ## Technologies Used
 
 - **Java**: The primary programming language for all projects.
 - **Spring Boot**: Framework used for building Java-based backend applications.
 - **PostgreSQL**: Database used for some projects.
+- **MongoDB**: NoSQL database used for some projects such as Kafka ChatService.
+- **Elasticsearch**: Search engine used for the Elasticsearch CRUD demo.
 - **Maven**: Build automation tool.
 - **Docker**: For containerized application setup (used in specific projects).
 - **JUnit**: For testing Java applications.
+- **AWS S3**: For file storage and management in the AWS S3 CRUD demo.
 
 ## Setup Instructions
 
